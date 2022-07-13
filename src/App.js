@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+import { useUserContext } from './context/UserContext';
+import Form from './components/Form/Form'; 
+import User from './components/User/User';
+
 import './App.css';
 
 function App() {
+  const {user, setUser} = useUserContext();
+  console.log("U AAPPU SAMM")
+  console.log("USER U APPU", user)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {user && user.name
+        ? <User user={user} setUser={setUser} />
+        : <Form setUser={setUser} />
+       }
+    </>
   );
 }
 
